@@ -1,0 +1,30 @@
+services:
+  mongo:
+    build:
+      context: ./mongo
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
+  
+  # inspections-api:
+  #   build:
+  #     context: ./inspections-api
+  #   container_name: inspections-api
+  #   ports:
+  #     - "3001:3001"
+  #   environment:
+  #     MONGO_URI: mongodb://mongo:27017/inspections-db
+  #   depends_on:
+  #     - mongo
+  
+  # inspection-ux:
+  #   build:
+  #     context: ./inspections-ux
+  #   container_name: inspections-ux
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - inspections-api

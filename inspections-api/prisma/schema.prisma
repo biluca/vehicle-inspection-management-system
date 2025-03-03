@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type InspectionsVehicles {
+  license_number    String?
+  license_state     String?
+  unit              String
+  unit_type         String?
+  vehicle_id_number String?
+}
+
+type InspectionsViolations {
+  BASIC                   String?
+  code                    String?
+  convicted_of_dif_charge String
+  description             String?
+  oos                     String?
+  time_severity_weight    String?
+  unit                    String?
+}
+
+model Inspections {
+  id                     String                  @id @default(auto()) @map("_id") @db.ObjectId
+  HM_inspection          String
+  Placarable_HM_Veh_Insp String
+  inspection_date        String
+  level                  String
+  report_number          String
+  report_state           String
+  time_weight            String
+  vehicles               InspectionsVehicles[]
+  violations             InspectionsViolations[]
+}
